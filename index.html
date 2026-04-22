@@ -98,7 +98,42 @@ function animate() {
 animate();
 
 // resize fix
-window.addEventListener('resize', () => {
+window.addEventListener('resize', () => {// ===== ENVIRONMENT ADDITION (paste-only) =====
+
+// floor
+const floor = new THREE.Mesh(
+  new THREE.BoxGeometry(6, 0.2, 6),
+  new THREE.MeshStandardMaterial({ color: 0x2a2a2a })
+);
+floor.position.y = -0.1;
+scene.add(floor);
+
+// walls
+const backWall = new THREE.Mesh(
+  new THREE.BoxGeometry(6, 4, 0.2),
+  new THREE.MeshStandardMaterial({ color: 0x1f1f24 })
+);
+backWall.position.set(0, 2, -3);
+scene.add(backWall);
+
+const leftWall = new THREE.Mesh(
+  new THREE.BoxGeometry(0.2, 4, 6),
+  new THREE.MeshStandardMaterial({ color: 0x1a1a1f })
+);
+leftWall.position.set(-3, 2, 0);
+scene.add(leftWall);
+
+const rightWall = leftWall.clone();
+rightWall.position.set(3, 2, 0);
+scene.add(rightWall);
+
+// platform
+const platform = new THREE.Mesh(
+  new THREE.BoxGeometry(1.5, 0.2, 1.5),
+  new THREE.MeshStandardMaterial({ color: 0x444444 })
+);
+platform.position.set(0, 1, 0);
+scene.add(platform);
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
